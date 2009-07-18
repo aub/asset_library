@@ -22,14 +22,14 @@ Finally, include the Rake tasks in your project:
 Two methods are made available for your views:
 
   <% # outputs library.js (production) or its files (development) %>
-  <%= asset_library_javascript_tags(:library) %>
+  <%= asset_library_javascript_tags(:javascripts) %>
 
   <% # outputs library.css (production) or its files (development) %>
-  <%= asset_library_stylesheet_tags(:library) %>
+  <%= asset_library_stylesheet_tags(:stylesheets) %>
 
   <% # outputs library.ie6.css (production) or its files (development) %>
   <!--[if lte IE 6]>
-    <%= asset_library_stylesheet_tags(:library, 'ie6') %>
+    <%= asset_library_stylesheet_tags(:stylesheets, 'ie6') %>
   <![endif]-->
 
 Both helpers behave differently depending on whether
@@ -50,6 +50,13 @@ These moduels can be removed using:
 A cached module is simply the concatenation of its constituent files.
 
 == Configuration
+
+You will also need a configuration file to describe the list of assets to
+be included. First, tell asset_library where to find the config file:
+
+  AssetLibrary.config_path = File.join(RAILS_ROOT, 'config', 'asset_library.yml')
+
+In rails, you can put this line in config/initializers/asset_library.rb.
 
 A typical configuration (Yaml) file might look like this:
 
